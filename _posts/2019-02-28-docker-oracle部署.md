@@ -6,26 +6,28 @@ subtitle:   docker 部署oracle
 date:       2019-02-28
 author:     ZJC
 header-img: img/post-bg-debug.png
-catalog: false
+catalog: true
 tags:
     - docker
     - oracle
 ---
 
-1 docker search oracle
+## 镜像准备
+<pre> docker search oracle </pre>
 
-2 docker pull sath89/oracle-12c
+<pre> docker pull sath89/oracle-12c </pre>
 
-3 Run with 8080 and 1521 ports opened:
-docker run -d -p 8080:8080 -p 1521:1521 sath89/oracle-12c
+## 启动
+Run with 8080 and 1521 ports opened:
+<pre> docker run -d -p 8080:8080 -p 1521:1521 sath89/oracle-12c </pre>
 
-4 Run with data on host and reuse it:
-docker run -d -p 8080:8080 -p 1521:1521 -v /my/oracle/data:/u01/app/oracle sath89/oracle-12c
+Run with data on host and reuse it:
+<pre> docker run -d -p 8080:8080 -p 1521:1521 -v /my/oracle/data:/u01/app/oracle sath89/oracle-12c </pre>
 
-5 Run with Custom DBCA_TOTAL_MEMORY (in Mb):
-docker run -d -p 8080:8080 -p 1521:1521 -v /my/oracle/data:/u01/app/oracle -e DBCA_TOTAL_MEMORY=1024 sath89/oracle-12c
+Run with Custom DBCA_TOTAL_MEMORY (in Mb):
+<pre>docker run -d -p 8080:8080 -p 1521:1521 -v /my/oracle/data:/u01/app/oracle -e DBCA_TOTAL_MEMORY=1024 sath89/oracle-12c </pre>
 
-6 Connect database with following setting:
+## 配置:
 hostname: localhost
 port: 1521
 sid: xe
@@ -33,18 +35,18 @@ service name: xe
 username: system
 password: oracle
 
-7 To connect using sqlplus:
+## To connect using sqlplus:
 <pre> sqlplus system/oracle@//localhost:1521/xe </pre>
 Password for SYS & SYSTEM:
 oracle
 
-8 Connect to Oracle Application Express web management console with following settings:
+## Connect to Oracle Application Express web management console with following settings:
 http://localhost:8080/apex
 workspace: INTERNAL
 user: ADMIN
 password: 0Racle$
 
-9 Apex upgrade up to v 5.*
+## Apex upgrade up to v 5.*
 docker run -it --rm --volumes-from ${DB_CONTAINER_NAME} --link ${DB_CONTAINER_NAME}:oracle-database -e PASS=YourSYSPASS sath89/apex install
 
 Details could be found here: https://github.com/MaksymBilenko/docker-oracle-apex
