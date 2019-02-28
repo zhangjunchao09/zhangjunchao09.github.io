@@ -6,7 +6,7 @@ subtitle:   docker 部署oracle
 date:       2019-02-28
 author:     ZJC
 header-img: img/post-bg-debug.png
-catalog: true
+catalog: false
 tags:
     - docker
     - oracle
