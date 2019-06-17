@@ -18,7 +18,7 @@ ThreadLocal是一个本地线程副本变量工具类。
 
 # ThreadLocal的核心机制：
 
-每个Thread线程内部都有一个Map。
+每个Thread线程内部都有一个Map。改map是ThreadLocal的静态内部类ThreadLocalMap。
 
 Map里面存储线程本地对象（key）和线程的变量副本（value）
 
